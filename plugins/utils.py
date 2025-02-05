@@ -24,7 +24,7 @@ from config import (
 )
 from pyrogram import filters
 from pyrogram.types import Message
-from plugins.throttling import ThrottlingMiddleware
+from plugins.throtling import ThrottlingMiddleware
 
 app = Bot
 throttle = ThrottlingMiddleware(slow_mode_delay=0.5)
