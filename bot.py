@@ -4,7 +4,6 @@
 
 import pyromod.listen
 import sys
-
 from pyrogram import Client, enums
 
 from config import (

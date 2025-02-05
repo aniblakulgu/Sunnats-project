@@ -24,7 +24,18 @@ from config import (
 )
 from pyrogram import filters
 from pyrogram.types import Message
+from plugins.throttling import ThrottlingMiddleware
 
+app = Bot
+throttle = ThrottlingMiddleware(slow_mode_delay=0.5)
+
+@app.on_message(filters.text | filters.media)
+async def handle_message(client, message: Message):
+    if not await throttle.check_throttle(message):
+        await message.reply("Juda ko'p so'rov! Biroz kuting.")
+        return
+    
+    await message.reply("So'rov muvaffaqiyatli qabul qilindi!")
 
 @Bot.on_message(filters.command("logs") & filters.user(ADMINS))
 async def get_bot_logs(client: Bot, m: Message):
