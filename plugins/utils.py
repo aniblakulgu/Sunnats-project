@@ -34,8 +34,6 @@ async def handle_message(client, message: Message):
     if not await throttle.check_throttle(message):
         await message.reply("Juda ko'p so'rov! Biroz kuting.")
         return
-    
-    await message.reply("So'rov muvaffaqiyatli qabul qilindi!")
 
 @Bot.on_message(filters.command("logs") & filters.user(ADMINS))
 async def get_bot_logs(client: Bot, m: Message):
